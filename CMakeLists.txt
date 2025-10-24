@@ -63,12 +63,17 @@ add_executable(SFML-CMake-Prac
     "SFML-CMake-Prac/src/Main.cpp"
 )
 
+# Tell our executable where to find the EnTT header files.
+# The ${entt_SOURCE_DIR} variable is automatically set by FetchContent.
+target_include_directories(SFML-CMake-Prac PRIVATE
+    ${entt_SOURCE_DIR}/include
+)
+
 # Link to all the required libraries that FetchContent made available
 target_link_libraries(SFML-CMake-Prac PRIVATE
     SFML::Graphics
     SFML::Window
     SFML::Audio
-    entt
     TGUI::TGUI
 )
 
