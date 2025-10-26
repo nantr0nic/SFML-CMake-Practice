@@ -40,33 +40,35 @@ FetchContent_Declare(
     GIT_TAG        v3.15.0
 )
 
-# Declare the TGUI dependency
-FetchContent_Declare(
-    tgui
-    GIT_REPOSITORY https://github.com/texus/TGUI.git
-    GIT_TAG        v1.11.0
-)
+### Declare the TGUI dependency
+#FetchContent_Declare(
+#    tgui
+#    GIT_REPOSITORY https://github.com/texus/TGUI.git
+#    GIT_TAG        v1.11.0
+#)
 
-# Configure TGUI: Must be done BEFORE MakeAvailable
-# Set the backend to SFML so TGUI knows which renderer to build for.
-set(TGUI_BACKEND "SFML_GRAPHICS" CACHE STRING "TGUI backend")
-set(TGUI_BUILD_STATIC_LIBS ON CACHE BOOL "Build TGUI as static libraries")
-set(TGUI_CXX_STANDARD 20)
+### Configure TGUI: Must be done BEFORE MakeAvailable
+### Set the backend to SFML so TGUI knows which renderer to build for.
+#set(TGUI_BACKEND "SFML_GRAPHICS" CACHE STRING "TGUI backend")
+#set(TGUI_BUILD_STATIC_LIBS ON CACHE BOOL "Build TGUI as static libraries")
+#set(TGUI_CXX_STANDARD 20)
 
 # Make both libraries available to the project
-FetchContent_MakeAvailable(entt tgui)
+FetchContent_MakeAvailable(entt) #tgui)
 
 # --------------------------------------------------------------------
 # STAGE 3: Configure your application
 # --------------------------------------------------------------------
 add_executable(SFML-CMake-Prac
     "SFML-CMake-Prac/src/Main.cpp"
+    "SFML-CMake-Prac/src/Game.cpp"
 )
 
 # Tell our executable where to find the EnTT header files.
 # The ${entt_SOURCE_DIR} variable is automatically set by FetchContent.
 target_include_directories(SFML-CMake-Prac PRIVATE
     ${entt_SOURCE_DIR}/include
+    SFML-CMake-Prac/include
 )
 
 # Link to all the required libraries that FetchContent made available
@@ -74,7 +76,7 @@ target_link_libraries(SFML-CMake-Prac PRIVATE
     SFML::Graphics
     SFML::Window
     SFML::Audio
-    TGUI::TGUI
+    #TGUI::TGUI
 )
 
 ### MSVC-specific settings ###
