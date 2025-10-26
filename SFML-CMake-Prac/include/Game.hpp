@@ -15,7 +15,7 @@ public:
 
 private:
 	void processEvents();				// Handle user input
-	void processEvents2(); // New event handling method
+	void processEvents2();				// New event handling method
 	void update(sf::Time deltaTime);	// Handle game logic
 	void render();						// Handle rendering
 
@@ -27,5 +27,5 @@ private:
 	gameEvents mEvents;
 
 	// Constants and Configuration
-	const float playerSpeed = 100.0f; // Pixels per second
+	const float playerSpeed = 100.0f;	// Pixels per second
 };
